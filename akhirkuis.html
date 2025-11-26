@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Bertahap</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #a8e6cf; /* warna background saat video loading */
+    }
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* supaya video full layar tapi tetap proporsional */
+      z-index: 0;
+    }
+     @media (max-width: 600px) {
+            .video-container {
+                /* Membuat wadah lebih lebar di HP */
+                max-width: 95%; 
+                padding: 10px; 
+            }
+        }
+
+
+    #btnLanjut {
+      display: none;
+    position: fixed; /* Membuat tombol tetap di viewport */
+    
+    /* Pusatkan Tombol (Teknik Absolut/Fixed Centering) */
+    top: 90%; /* Pindahkan ke 50% dari atas */
+    left: 50%; /* Pindahkan ke 50% dari kiri */
+    transform: translate(-50%, -50%); /* Geser kembali sebesar setengah ukuran tombol */
+    
+    /* Styling */
+    padding: 12px 20px;
+    background: #eebb30;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10; /* Penting! Tombol tetap di atas video */
+}
+
+.btn-start:hover {
+    background: #e9da86;
+    }
+  </style>
+</head>
+<body>
+  <video id="videoPlayer" autoplay></video>
+  <button id="btnLanjut">Menu Utama</button>
+
+  <script>
+    // Array video bertahap
+    const videos = [
+      'semarakkuis22.mp4',
+    ];
+
+    let currentVideo = 0; // indeks video sekarang
+    const videoPlayer = document.getElementById('videoPlayer');
+    const btnLanjut = document.getElementById('btnLanjut');
+
+    // Fungsi untuk load video
+    function loadVideo(index) {
+  videoPlayer.src = videos[index];
+  videoPlayer.play();
+  btnLanjut.style.display = 'none';
+}
+
+// Load video pertama
+loadVideo(currentVideo);
+
+videoPlayer.addEventListener('ended', () => {
+  btnLanjut.style.display = 'block';
+});
+
+btnLanjut.addEventListener('click', () => {
+  currentVideo++;
+  if(currentVideo < videos.length) {
+    loadVideo(currentVideo);
+  } else {
+    // Setelah video terakhir selesai → arahkan ke halaman lain
+    window.location.href = 'menu utama.html'; // ganti sesuai halaman tujuan
+  }
+});
+  </script>
+</body>
+</html>
