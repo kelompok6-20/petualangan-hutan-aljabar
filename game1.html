@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Aljabar</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: url('forest.svg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(6px);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      color: #333;
+      font-size: 1.4rem;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      margin: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    .benar {
+      color: green;
+    }
+
+    .salah {
+      color: red;
+    }
+
+    #result h2 {
+      color: #333;
+    }
+
+    #result button {
+      background: #28a745;
+    }
+
+    #result button:hover {
+      background: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="question">Memuat soal...</h1>
+    <div id="options"></div>
+    <p id="feedback" class="feedback"></p>
+
+    <div id="result" style="display:none;">
+      <h2>Skor kamu: <span id="score"></span>/10</h2>
+      <button onclick="restartGame()">Ulangi</button>
+      <button onclick="window.location.href='index1.html'">Kembali ke Video</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { q: "3x + 5x =", a: "8x", options: ["8x", "15x", "2x"] },
+      { q: "7y - 2y =", a: "5y", options: ["9y", "5y", "10y"] },
+      { q: "6a + 4a =", a: "10a", options: ["12a", "10a", "8a"] },
+      { q: "9b - 3b =", a: "6b", options: ["6b", "3b", "12b"] },
+      { q: "4p + 7p =", a: "11p", options: ["10p", "11p", "12p"] },
+      { q: "8m - 5m =", a: "3m", options: ["2m", "3m", "5m"] },
+      { q: "2x + 9x =", a: "11x", options: ["10x", "11x", "12x"] },
+      { q: "10y - 4y =", a: "6y", options: ["7y", "6y", "8y"] },
+      { q: "5a + 5a =", a: "10a", options: ["9a", "10a", "11a"] },
+      { q: "12b - 7b =", a: "5b", options: ["6b", "5b", "4b"] },
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      if (current >= questions.length) {
+        document.getElementById("question").style.display = "none";
+        document.getElementById("options").style.display = "none";
+        document.getElementById("feedback").style.display = "none";
+        document.getElementById("result").style.display = "block";
+        document.getElementById("score").textContent = score;
+        return;
+      }
+
+      const q = questions[current];
+      document.getElementById("question").textContent = q.q;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(opt);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+      if (answer === questions[current].a) {
+        score++;
+        feedback.textContent = "Benar!";
+        feedback.className = "feedback benar";
+      } else {
+        feedback.textContent = `Salah! Jawaban yang benar: ${questions[current].a}`;
+        feedback.className = "feedback salah";
+      }
+
+      setTimeout(() => {
+        current++;
+        feedback.textContent = "";
+        showQuestion();
+      }, 1300);
+    }
+
+    function restartGame() {
+      current = 0;
+      score = 0;
+      document.getElementById("result").style.display = "none";
+      document.getElementById("question").style.display = "block";
+      document.getElementById("options").style.display = "block";
+      document.getElementById("feedback").style.display = "block";
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>

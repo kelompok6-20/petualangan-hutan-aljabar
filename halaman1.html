@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Selamat Datang di Petualangan Hutan Aljabar</title>
+
+  <style>
+    /* 🎨 Variabel warna utama */
+    :root{
+      --accent:#16a34a;    /* hijau daun */
+      --accent-2:#10b981;  /* hijau muda */
+    }
+
+    /* 🧱 Gaya umum */
+    *{
+      box-sizing:border-box;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto;
+    }
+
+    /* 🌿 Latar belakang hutan dan posisi tengah */
+    html,body{
+      height:100%;
+      margin:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:url('forest.svg') center/cover no-repeat;
+    }
+
+    /* 🏕️ Kotak putih tengah */
+    .welcome{
+      text-align:center;
+      background:white;
+      padding:40px 60px;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* 🌱 Warna teks */
+    h1{color:var(--accent);margin-bottom:10px;}
+    p{color:#065f46;margin-bottom:24px;}
+
+    /* 🌟 Tombol utama */
+    .btn{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      border:0;
+      padding:12px 24px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      font-size:1rem;
+      box-shadow:0 8px 20px rgba(16,163,74,0.2);
+      text-decoration:none;
+      transition: all 0.3s ease; /* animasi halus saat hover */
+    }
+
+    /* ✨ Efek bersinar saat tombol disentuh */
+    .btn:hover{
+      box-shadow:0 0 20px 6px rgba(16,185,129,0.6); /* cahaya hijau lembut */
+      transform:scale(1.05); /* sedikit membesar */
+    }
+
+    /* 🖼️ Gambar logo */
+    img{
+      max-width:280px;
+      margin-bottom:20px;
+      border-radius:14px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🌳 Bagian utama -->
+  <div class="welcome">
+    <img src="https://i.ibb.co/dM3xgK8/hutan-aljabar.png" alt="Hutan Aljabar" />
+    <h1>🌿 Selamat Datang!</h1>
+    <p>Siap berpetualang di Hutan Aljabar? Yuk mulai belajar bentuk aljabar dengan cara seru dan interaktif!</p>
+    <a href="biodata.html" class="btn" id="startBtn">Mulai</a>
+  </div>
+
+  <!-- 🔊 Suara klik -->
+  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+  <!-- ⚙️ JavaScript untuk memutar suara -->
+  <script>
+    const button = document.getElementById('startBtn');
+    const sound = document.getElementById('clickSound');
+
+    button.addEventListener('click', function(e){
+      e.preventDefault();  // tahan dulu biar suara kedengeran
+      sound.play();        // mainkan suara
+
+      // tunggu 0.3 detik, baru pindah halaman
+      setTimeout(() => {
+        window.location.href = button.href;
+      }, 300);
+    });
+  </script>
+</body>
+</html>
