@@ -86,8 +86,16 @@ video {
 loadVideo(currentVideo);
 
 videoPlayer.addEventListener('ended', () => {
+  // Kalau video terakhir → ganti teks tombol
+  if (currentVideo === videos.length - 1) {
+    btnLanjut.textContent = "Terima Tantangan";
+  } else {
+    btnLanjut.textContent = "Lanjut";
+  }
+  
   btnLanjut.style.display = 'block';
 });
+
 
 btnLanjut.addEventListener('click', () => {
   currentVideo++;
@@ -101,4 +109,5 @@ btnLanjut.addEventListener('click', () => {
   </script>
 </body>
 </html>
+
 
