@@ -1,0 +1,38 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(#a4f0b5, #e3f9d7);
+  text-align: center;
+  padding: 30px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: auto;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.hidden {
+  display: none;
+}
+
+.scratch-embed {
+  margin-top: 20px;
+}
