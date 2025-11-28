@@ -140,14 +140,6 @@
       sound.volume = 0.7;
       sound.play();
 
-      // Simpan biodata ke localStorage (biar bisa dipakai di halaman lain)
-      const biodata = {
-        nama: form.nama.value,
-        kelas: form.kelas.value,
-        usia: form.usia.value
-      };
-      localStorage.setItem('biodata', JSON.stringify(biodata));
-
       // Arahkan ke halaman materi
       setTimeout(() => {
         window.location.href = "menu utama.html";
@@ -172,4 +164,5 @@
   cursor: pointer;
 }
 </style>
+
 
